@@ -55,7 +55,7 @@ Route::get('/sipp/member/finalisasi', function () {
 });
 
 // ADMINISTRASI
-Route::resource('/sipp/administrasi/home', 'Administrasi\HomeController');
+Route::resource('/sipp/administrasi', 'Administrasi\HomeController');
 
 // Route::get('/sipp/administrasi/home', function () {
 //     return view('sipp/administrasi/home');

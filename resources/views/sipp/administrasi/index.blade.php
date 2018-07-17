@@ -56,7 +56,7 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $halo->created_at }}</td>
                             <td>{{ $halo->nama_lengkap }}</td>
-                            <td>...</td>
+                            <td>Menunggu Pengecekan Ulang Sekretariat</td>
                             <td>
                                 <button type="button" class="btn btn-primary">Cek Berkas</button>
                                 <button type="button" class="btn btn-primary">Ubah Berkas</button>
