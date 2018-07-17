@@ -52,63 +52,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i=1; ?>
+                        @foreach($halo as $halo)
                         <tr>
-                            <td>1</td>
-                            <td>10 Juni 2018</td>
-                            <td>A</td>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $halo->created_at }}</td>
+                            <td>{{ $halo->nama_lengkap }}</td>
                             <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
+                            <td><center><a href="{{ url('pdfKeluar/') }}"><button type="button" class="btn btn-primary">Lihat</button></a></center></td>
+                            <td><center><button type="button" class="btn btn-primary">Lihat</button></center></td>
+                            <td><center><button type="button" class="btn btn-primary">Lihat</button></center></td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>10 Juni 2018</td>
-                            <td>A</td>
-                            <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>10 Juni 2018</td>
-                            <td>A</td>
-                            <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>10 Juni 2018</td>
-                            <td>A</td>
-                            <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>10 Juni 2018</td>
-                            <td>A</td>
-                            <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                            <td><button type="button" class="btn btn-primary">Lihat</button></td>
-                        </tr>
+                        @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama</th>
-                            <th>Status</th>
-                            <th>Lembar Permohonan</th>
-                            <th>Portofolio Kegiatan Psikolog</th>
-                            <th>Berita Acara Penilaian</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

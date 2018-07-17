@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administrasi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Member\Biodata;
+use DB;
 
 class HomeController extends Controller
 {
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $halo = Biodata::orderby('id')->get(); 
+        $halo = Biodata::orderby('id')->get();
         return view('sipp.administrasi.index', compact('halo'));
     }
 
@@ -26,10 +27,10 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        // return view('sipp.administrasi.home');
     }
 
-    /**
+    /** 
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,12 +49,8 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $halo = DB::table('pengajuan_administrasi')
-            ->select('*')
-            ->get();
-
-        // return view('sipp.administrasi.home')->with('halo', $halo);
-        return view('sipp.administrasi.home', compact('halo'));
+        $halo = Biodata::where('id', $id)->get();
+        return view('sipp.administrasi.home_show', compact('halo'));
     }
 
     /**

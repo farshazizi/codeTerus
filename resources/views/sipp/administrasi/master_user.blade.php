@@ -37,6 +37,7 @@
 
                 <div class="row" style="margin-top: 8px; margin-bottom: 8px">
                     <div class="col-lg-12">
+                        {!! Form::open(['route' => 'master_user.store', 'files'=>true, 'enctype'=>'multipart/form-data']) !!}
                         <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Tambah User</button>
 
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,72 +50,80 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <label>NIK</label>
-                                        <input type="text" name="nik">
-                                        <br><br>
-                                        <label>Nama</label>
-                                        <input type="text" name="nama">
-                                        <br><br>
-                                        <label>Password</label>
-                                        <input type="password" name="password">
-                                        <br><br>
-                                        <label>Email</label>
-                                        <input type="email" name="email">
-                                        <br><br>
-                                        <label>No Hp</label>
-                                        <input type="text" name="hp">
-                                        <br><br>
-                                        <label>Role</label>
-                                        <select name="role">
-                                            <option disabled="true" selected="true">Pilih Role</option>
-                                            <option value="member">Member</option>
-                                            <option value="wawancara">Wawancara</option>
-                                        </select>
-                                        {{-- <table style="width: 100%">
+                                        <table width="100%">
                                             <tr>
-                                                <td>NIk</td>
+                                                <td>NIK</td>
                                                 <td></td>
-                                                <td><input type="number" name="nik"></td>
+                                                <td>
+                                                    {{-- <input class="form-control" name="nik" required/> --}}
+                                                    {{ Form::text('nik', null, array('class' => 'form-control', 'required' => '')) }}
+                                                </td>
                                             </tr>
-
                                             <tr>
-                                                <td>NIk</td>
-                                                <td></td>
-                                                <td><input type="number" name="nik"></td>
+                                                <td colspan="3"><br></td>
                                             </tr>
-
                                             <tr>
-                                                <td>NIk</td>
+                                                <td>Nama</td>
                                                 <td></td>
-                                                <td><input type="number" name="nik"></td>
+                                                <td>
+                                                    {{-- <input class="form-control" name="nama" required/> --}}
+                                                    {{ Form::text('name', null, array('class' => 'form-control', 'required' => '')) }}
+                                                </td>
                                             </tr>
-
                                             <tr>
-                                                <td>NIk</td>
-                                                <td></td>
-                                                <td><input type="number" name="nik"></td>
+                                                <td colspan="3"><br></td>
                                             </tr>
-
                                             <tr>
-                                                <td>NIk</td>
+                                                <td>Password</td>
                                                 <td></td>
-                                                <td><input type="number" name="nik"></td>
+                                                <td>
+                                                    {{-- <input class="form-control" name="password" required/> --}}
+                                                    {{ Form::text('password', null, array('class' => 'form-control', 'required' => '')) }}
+                                                </td>
                                             </tr>
-
                                             <tr>
-                                                <td>NIk</td>
-                                                <td></td>
-                                                <td><input type="number" name="nik"></td>
+                                                <td colspan="3"><br></td>
                                             </tr>
-                                        </table> --}}
+                                            <tr>
+                                                <td>E-Mail</td>
+                                                <td></td>
+                                                <td>
+                                                    {{-- <input type="email" class="form-control" name="email" required/> --}}
+                                                    {{ Form::text('email', null, array('class' => 'form-control', 'required' => '')) }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td>No Hp</td>
+                                                <td></td>
+                                                <td>
+                                                    {{-- <input class="form-control" name="no_hp" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/> --}}
+                                                    {{ Form::number('handphone', null, array('class' => 'form-control', 'required' => '')) }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Role</td>
+                                                <td></td>
+                                                <td>
+                                                    {{ Form::select('role', ['-- Pilih Role --' => '-- Pilih Role --', 'Member' => 'Member', 'Wawancara' => 'Wawancara'], null, array('class' => 'form-control', 'required' => '')) }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success">Success</button>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Danger</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
 
@@ -134,66 +143,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i=1; ?>
+                                @foreach($halo as $halo)
                                 <tr>
-                                    <td>1</td>
-                                    <td>10 Juni 2018</td>
-                                    <td>A</td>
-                                    <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                                    <td>081234567890</td>
-                                    <td>Admin</td>
+                                    <td>{{ $i++ }}</td>
+                                    <td></td>
+                                    <td>{{ $halo->nama_lengkap }}</td>
+                                    <td>{{ $halo2->email }}</td>
+                                    <td>{{ $halo2->handphone }}</td>
+                                    <td>{{}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
                                         <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>10 Juni 2018</td>
-                                    <td>A</td>
-                                    <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                                    <td>081234567890</td>
-                                    <td>Admin</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>10 Juni 2018</td>
-                                    <td>A</td>
-                                    <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                                    <td>081234567890</td>
-                                    <td>Admin</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>10 Juni 2018</td>
-                                    <td>A</td>
-                                    <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                                    <td>081234567890</td>
-                                    <td>Admin</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>10 Juni 2018</td>
-                                    <td>A</td>
-                                    <td>Menunggu Pengecekan Ulang Tim Bidang</td>
-                                    <td>081234567890</td>
-                                    <td>Admin</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

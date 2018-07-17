@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Administrasi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Member\Biodata;
-use App\Member\Pendidikan;
-use App\Member\Pengembangan_Professional;
-use DB;
+use App\User;
 
-class BerkasUserController extends Controller
+class MasterUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,9 @@ class BerkasUserController extends Controller
      */
     public function index()
     {
-        $halo = Biodata::orderBy('id')->get();
-        // $halo = Biodata::all();
-        return view('sipp.administrasi.berkas_user', compact('halo'));
+        $halo = User::orderby('id')->get();
+        $halo2 = Biodata::orderby('id')->get();
+        return view('sipp.administrasi.master_user', compact('halo', 'halo2'));
     }
 
     /**
@@ -30,7 +28,7 @@ class BerkasUserController extends Controller
      */
     public function create()
     {
-        return view('sipp.administrasi.berkas_user');
+        return view('sipp.administrasi.master_user');
     }
 
     /**
@@ -41,7 +39,31 @@ class BerkasUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate the data
+        $this->validate($request, array(
+            'nik'       => 'required',
+            'name'      => 'required',
+            'password'  => 'required',
+            'email'     => 'required',
+            'handphone' => 'required',
+            'role'      => 'required',
+            
+        ));
+
+        // store in the database
+        $user = new User;
+
+        $user->nik          = $request->nik;
+        $user->name         = $request->name;
+        $user->password     = $request->password;
+        $user->email        = $request->email;
+        $user->handphone    = $request->handphone;
+        $user->role         = $request->role;
+
+        $user->save();
+
+        // redirect to another page
+        return redirect()->route('sipp.administrasi.master_user');
     }
 
     /**
@@ -52,10 +74,8 @@ class BerkasUserController extends Controller
      */
     public function show($id)
     {
-        $halo = Pendidikan::where('id_pengajuan', $id)->get();
-        $halos = Pengembangan_Professional::where('id_pengajuan', $id)->get();
-
-        return view('sipp.administrasi.berkas_user_show', compact('halo', 'halos'));
+        // $halo = Biodata::where('id', $id)->get();
+        // return view('sipp.administrasi.master_user', compact('halo'));
     }
 
     /**
